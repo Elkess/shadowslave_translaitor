@@ -18,4 +18,4 @@ Dark-mode responsive web app for reading and translating chapters from https://s
 
 ## Notes
 - Chapter fetching uses fallback proxies when direct CORS requests are blocked.
-- API keys are only saved if you enable **Remember API key on this device**.
+- API keys are not persisted to localStorage for security; re-enter your key when you reopen the page.

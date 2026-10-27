@@ -12,7 +12,6 @@ const el = {
   apiKey: document.getElementById("api-key"),
   baseUrl: document.getElementById("base-url"),
   model: document.getElementById("model"),
-  rememberKey: document.getElementById("remember-key"),
   saveSettings: document.getElementById("save-settings"),
   translate: document.getElementById("translate"),
   status: document.getElementById("status"),
@@ -122,14 +121,10 @@ function saveSettings() {
   const payload = {
     baseUrl: settings.baseUrl,
     model: settings.model,
-    rememberKey: el.rememberKey.checked,
-    apiKey: el.rememberKey.checked ? settings.apiKey : "",
   };
 
   localStorage.setItem(SETTINGS_KEY, JSON.stringify(payload));
-  if (!el.rememberKey.checked) {
-    el.apiKey.value = "";
-  }
+  el.apiKey.value = "";
   setStatus("Settings saved.");
 }
 
@@ -145,10 +140,6 @@ function restoreSettings() {
     const parsed = JSON.parse(raw);
     el.baseUrl.value = parsed.baseUrl || "https://api.openai.com/v1";
     el.model.value = parsed.model || "gpt-4o-mini";
-    el.rememberKey.checked = Boolean(parsed.rememberKey);
-    if (parsed.rememberKey && parsed.apiKey) {
-      el.apiKey.value = parsed.apiKey;
-    }
   } catch {
     el.baseUrl.value = "https://api.openai.com/v1";
     el.model.value = "gpt-4o-mini";
