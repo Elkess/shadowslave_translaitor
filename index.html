@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shadow Slave Smart Translator</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <h1>Shadow Slave Smart Translator</h1>
+        <p>High-quality chapter translation with saved reading progress.</p>
+      </header>
+
+      <section class="card controls">
+        <div class="controls__row">
+          <label for="chapter-url">Chapter URL</label>
+          <input
+            id="chapter-url"
+            type="url"
+            placeholder="https://shadowslave.space/chapter-..."
+          />
+          <button id="load-chapter">Load Chapter</button>
+        </div>
+
+        <div class="controls__row controls__row--compact">
+          <button id="load-recent">Load recent chapters</button>
+          <select id="recent-chapters">
+            <option value="">Select a chapter...</option>
+          </select>
+          <button id="use-selected">Open selected</button>
+        </div>
+
+        <details>
+          <summary>AI translator settings</summary>
+          <div class="controls__row controls__row--stack">
+            <label for="api-key">OpenAI-compatible API key</label>
+            <input id="api-key" type="password" placeholder="sk-..." />
+
+            <label for="base-url">API base URL</label>
+            <input id="base-url" type="url" placeholder="https://api.openai.com/v1" />
+
+            <label for="model">Model</label>
+            <input id="model" type="text" placeholder="gpt-4o-mini" />
+
+            <button id="save-settings">Save settings</button>
+          </div>
+        </details>
+
+        <div class="controls__row controls__row--compact">
+          <button id="translate">Translate loaded chapter</button>
+          <span id="status" aria-live="polite">Idle</span>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2 id="chapter-title">Original chapter</h2>
+          <pre id="source-text" class="text-panel"></pre>
+        </article>
+        <article class="card">
+          <h2>Arabic translation</h2>
+          <pre id="translated-text" class="text-panel"></pre>
+        </article>
+      </section>
+    </main>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>
